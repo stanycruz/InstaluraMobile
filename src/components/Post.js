@@ -6,6 +6,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 const width = Dimensions.get('window').width;
@@ -15,6 +16,7 @@ export default class Post extends Component {
     super(props);
     this.state = {
       foto: this.props.foto, //{...this.props.foto, likers: [{}]},
+      valorComentario: '',
     };
   }
 
@@ -69,6 +71,29 @@ export default class Post extends Component {
     this.setState({foto: fotoAtualizada});
   }
 
+  adicionaComentario() {
+    if (this.state.valorComentario === '') {
+      return;
+    }
+
+    const novaLista = [
+      ...this.state.foto.comentarios,
+      {
+        id: this.state.valorComentario,
+        login: 'meuUsuario',
+        texto: this.state.valorComentario,
+      },
+    ];
+
+    const fotoAtualizada = {
+      ...this.state.foto,
+      comentarios: novaLista,
+    };
+
+    this.setState({foto: fotoAtualizada, valorComentario: ''});
+    this.inputComentario.clear();
+  }
+
   render() {
     const {foto} = this.state;
     return (
@@ -87,6 +112,27 @@ export default class Post extends Component {
           </TouchableOpacity>
           {this.exibeLikes(foto.likers)}
           {this.exibeLegenda(foto)}
+
+          {foto.comentarios.map(comentario => (
+            <View style={styles.comentario} key={comentario.id}>
+              <Text style={styles.tituloComentario}>{comentario.login}</Text>
+              <Text>{comentario.texto}</Text>
+            </View>
+          ))}
+          <View style={styles.novoComentario}>
+            <TextInput
+              style={styles.input}
+              placeholder="Adicione um comentário..."
+              ref={input => (this.inputComentario = input)}
+              onChangeText={texto => this.setState({valorComentario: texto})}
+            />
+            <TouchableOpacity onPress={this.adicionaComentario.bind(this)}>
+              <Image
+                style={styles.icone}
+                source={require('../../resources/img/send.png')}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -126,5 +172,19 @@ const styles = StyleSheet.create({
   tituloComentario: {
     fontWeight: 'bold',
     marginRight: 5,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+  },
+  icone: {
+    width: 30,
+    height: 30,
+  },
+  novoComentario: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
 });

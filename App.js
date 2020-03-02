@@ -1,9 +1,4 @@
-import React from 'react';
+import Login from './src/screens/Login';
+import Feed from './src/components/Feed';
 
-import InstaluraMobile from './src/components/InstaluraMobile';
-
-const App: () => React$Node = () => {
-  return <InstaluraMobile />;
-};
-
-export default App;
+export default Login;

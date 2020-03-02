@@ -3,7 +3,7 @@ import {FlatList, StyleSheet, Platform} from 'react-native';
 
 import Post from './Post';
 
-export default class InstaluraMobile extends Component {
+export default class Feed extends Component {
   constructor() {
     super();
     this.state = {

@@ -8,6 +8,7 @@ import {
   Button,
   AsyncStorage,
 } from 'react-native';
+import {goToAuth, goHome} from './Navigation';
 
 const width = Dimensions.get('window').width;
 
@@ -44,6 +45,7 @@ export default class Login extends Component {
       .then(token => {
         AsyncStorage.setItem('token', token);
         AsyncStorage.setItem('usuario', this.setState.usuario);
+        goHome();
       })
       .catch(e => this.setState({mensagem: e.message}));
   }

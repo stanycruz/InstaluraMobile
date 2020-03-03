@@ -73,7 +73,6 @@ export default class Feed extends Component {
   render() {
     return (
       <FlatList
-        style={styles.container}
         data={this.state.fotos}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (

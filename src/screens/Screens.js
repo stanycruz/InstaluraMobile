@@ -6,4 +6,8 @@ export function registerScreens() {
     'Feed',
     () => require('../components/Feed').default,
   );
+  Navigation.registerComponent(
+    'PerfilUsuario',
+    () => require('../components/Feed').default,
+  );
 }

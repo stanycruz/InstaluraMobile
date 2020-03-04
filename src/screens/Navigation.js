@@ -17,3 +17,12 @@ export const goHome = () =>
       },
     },
   });
+
+export const goUser = () =>
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: 'PerfilUsuario',
+      },
+    },
+  });

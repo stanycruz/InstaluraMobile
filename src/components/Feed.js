@@ -3,6 +3,7 @@ import {FlatList, StyleSheet, Platform, AsyncStorage} from 'react-native';
 import Post from './Post';
 import InstaluraFetchService from '../services/InstaluraFetchService';
 import Notificacao from '../api/Notificacao';
+import {goUser} from '../screens/Navigation';
 
 export default class Feed extends Component {
   constructor() {
@@ -84,6 +85,10 @@ export default class Feed extends Component {
       );
   }
 
+  verPerfilUsuario() {
+    goUser();
+  }
+
   render() {
     return (
       <FlatList
@@ -94,6 +99,7 @@ export default class Feed extends Component {
             foto={item}
             likeCallback={this.like.bind(this)}
             comentarioCallback={this.adicionaComentario.bind(this)}
+            verPerfilCallback={this.verPerfilUsuario.bind(this)}
           />
         )}
       />

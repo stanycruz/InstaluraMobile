@@ -1,9 +1,15 @@
-import React from 'react';
+import {Navigation} from 'react-native-navigation';
+import {registerScreens} from './src/screens/Screens';
+import {AsyncStorage} from 'react-native';
+import {goToAuth, goHome} from './src/screens/Navigation';
 
-import InstaluraMobile from './src/components/InstaluraMobile';
+registerScreens();
 
-const App: () => React$Node = () => {
-  return <InstaluraMobile />;
-};
-
-export default App;
+Navigation.events().registerAppLaunchedListener(() =>
+  AsyncStorage.getItem('token').then(token => {
+    if (token) {
+      return goHome();
+    }
+    return goToAuth();
+  }),
+);

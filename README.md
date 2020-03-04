@@ -21,15 +21,13 @@ Android Studio
 
 ### Instalação
 
-O comando a seguir cria o projeto e todas as suas dependências
+Aqui você pode baixar o projeto do servidor de dados utilizado no Instalura
 
-```
-react-native init InstaluraMobile
-```
+* [API Instalura](https://github.com/alura-cursos/instalura-api)
 
 ### Executando
 
-O comando a seguir executa o projeto no Android
+O comando a seguir executa o projeto no Android a partir da pasta raíz do projeto
 
 ```
 react-native run-android

@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {Text, View, TextInput, Button} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import estilo from './estilo';
 import efetuarLogin from '../../api/login';
 
@@ -10,7 +11,10 @@ const Login: () => React$Node = () => {
 
   const tentarLogar = async () => {
     try {
-      await efetuarLogin(usuario, senha);
+      const token = await efetuarLogin(usuario, senha);
+      await AsyncStorage.setItem('instalura_token', token);
+      const t = await AsyncStorage.getItem('instalura_token');
+      console.warn(t);
     } catch (error) {
       setMensagemErro(error.message);
     }

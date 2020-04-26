@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import {FlatList, ScrollView, Platform, StatusBar} from 'react-native';
+import {FlatList, ScrollView, StatusBar, Platform} from 'react-native';
 import {Cabecalho} from '../../Components/Cabecalho';
 import {Foto} from '../../Components/Foto';
 import lerFotos from '../../api/feed';
@@ -7,7 +7,7 @@ import {Comentarios} from '../../Components/Comentarios';
 import {curtirFoto, imgLike} from '../../api/curtidas';
 import adicionarComentario from '../../api/comentario';
 
-const Feed: () => React$Node = () => {
+const Feed = () => {
   const [fotos, setFotos] = useState([]);
 
   useEffect(() => {
@@ -15,9 +15,6 @@ const Feed: () => React$Node = () => {
   }, []);
 
   let altura = 0;
-  if (Platform.OS === 'ios') {
-    altura = 35;
-  }
 
   return (
     <ScrollView style={{marginTop: altura}}>
@@ -44,6 +41,18 @@ const Feed: () => React$Node = () => {
       />
     </ScrollView>
   );
+};
+
+Feed.navigationOptions = ({navigation}) => {
+  const opcoes = {
+    title: navigation.getParam('nome'),
+  };
+
+  if (Platform.OS === 'android') {
+    opcoes.header = null;
+  }
+
+  return opcoes;
 };
 
 export default Feed;

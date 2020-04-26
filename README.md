@@ -37,4 +37,6 @@ react-native run-android
 
 * [React Native](https://facebook.github.io/react-native) - A framework for building native apps using React.
 
-* [React Native Navigation](https://github.com/wix/react-native-navigation) - Provides 100% native platform navigation on both iOS and Android for React Native apps.
+* [React Navigation](https://reactnavigation.org) - Routing and navigation for your React Native apps.
+
+* [React Native Async Storage](https://github.com/react-native-community/async-storage) - An asynchronous, unencrypted, persistent, key-value storage system for React Native.

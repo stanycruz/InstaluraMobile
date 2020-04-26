@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import estilo from './estilo';
 import efetuarLogin from '../../api/login';
 
-const Login: () => React$Node = () => {
+const Login = ({navigation}) => {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagemErro, setMensagemErro] = useState('');
@@ -13,8 +13,7 @@ const Login: () => React$Node = () => {
     try {
       const token = await efetuarLogin(usuario, senha);
       await AsyncStorage.setItem('instalura_token', token);
-      const t = await AsyncStorage.getItem('instalura_token');
-      console.warn(t);
+      navigation.push('Feed');
     } catch (error) {
       setMensagemErro(error.message);
     }

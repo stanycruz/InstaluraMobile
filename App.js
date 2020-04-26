@@ -1,15 +1,19 @@
-import {Navigation} from 'react-native-navigation';
-import {registerScreens} from './src/screens/Screens';
-import {AsyncStorage} from 'react-native';
-import {goToAuth, goHome} from './src/screens/Navigation';
+import 'react-native-gesture-handler';
+import React from 'react';
+import Feed from './src/Views/Feed/Feed';
+import Login from './src/Views/Login/Login';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-registerScreens();
+const navigator = createStackNavigator({
+  Login: {screen: Login},
+  Feed: {screen: Feed},
+});
 
-Navigation.events().registerAppLaunchedListener(() =>
-  AsyncStorage.getItem('token').then(token => {
-    if (token) {
-      return goHome();
-    }
-    return goToAuth();
-  }),
-);
+const AppContainer = createAppContainer(navigator);
+
+const App = () => {
+  return <AppContainer />;
+};
+
+export default App;

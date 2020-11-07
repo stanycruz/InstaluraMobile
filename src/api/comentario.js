@@ -1,11 +1,11 @@
 const adicionarComentario = (comentario, usuario) => {
-  const novoComentario = {
-    date: Date.now(),
-    text: comentario,
-    userName: usuario,
-  };
+    const novoComentario = {
+        date: Date.now(),
+        text: comentario,
+        userName: usuario,
+    };
 
-  return novoComentario;
+    return novoComentario;
 };
 
 export default adicionarComentario;
